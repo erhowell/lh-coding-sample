@@ -16,7 +16,9 @@ export default function BingoSpace({
       bg={marked ? "red.200" : "transparent"}
       textAlign="center"
     >
-      <styled.h4>{value}</styled.h4>
+      <styled.h3 py="0.5" textStyle="h4">
+        {value}
+      </styled.h3>
     </styled.div>
   );
 }

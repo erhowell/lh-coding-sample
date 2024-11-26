@@ -21,8 +21,6 @@ export default function MasterBoard({ ball }: { ball: BingoBall }) {
   });
 
   useEffect(() => {
-    console.log({ ball });
-
     setBoard((prevBoard) => {
       const updatedBoard = { ...prevBoard }; // Shallow copy of the board
       const column = updatedBoard[ball.column];
@@ -36,7 +34,6 @@ export default function MasterBoard({ ball }: { ball: BingoBall }) {
         ),
       };
 
-      console.log({ updatedBoard });
       return updatedBoard; // Return the updated board object
     });
   }, [ball]);
@@ -44,22 +41,21 @@ export default function MasterBoard({ ball }: { ball: BingoBall }) {
   return (
     <styled.div>
       {/* {JSON.stringify(ball.value)} */}
+      <Grid
+        w="full"
+        columns={5}
+        justifyItems="center"
+        borderBottomWidth="1px"
+        borderBottomColor="gray.400"
+        py="2"
+      >
+        {Object.keys(board).map((key) => (
+          <GridItem key={`column-${key}`} colSpan={1}>
+            <styled.h3 textStyle="h2">{key}</styled.h3>
+          </GridItem>
+        ))}
+      </Grid>
       <Grid w="full" columns={5} justifyItems="center">
-        <GridItem colSpan={1}>
-          <styled.h2>B</styled.h2>
-        </GridItem>
-        <GridItem colSpan={1}>
-          <styled.h2>I</styled.h2>
-        </GridItem>
-        <GridItem colSpan={1}>
-          <styled.h2>N</styled.h2>
-        </GridItem>
-        <GridItem colSpan={1}>
-          <styled.h2>G</styled.h2>
-        </GridItem>
-        <GridItem colSpan={1}>
-          <styled.h2>O</styled.h2>
-        </GridItem>
         {!!board &&
           indexes.map((idx) =>
             Object.keys(board).map((key) => (
